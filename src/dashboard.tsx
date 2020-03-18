@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery } from '@material-ui/core';
 import { AppBar, Toolbar, Badge, Hidden, IconButton, Theme } from '@material-ui/core';
 import { List, ListItem, Button, colors } from '@material-ui/core';
 import { Popover } from '@material-ui/core';
@@ -19,7 +20,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     signOutButton: {
         marginLeft: theme.spacing(1),  // なんでか上の方の型定義を入れないとエラーになる
-    }
+    },
+    drawer: {
+        width: 240,
+        [theme.breakpoints.up('lg')]: {
+            marginTop: 64,
+            height: 'calc(100% - 64px)'
+        }
+    },
 }));
 
 const TopBar = (props:any) => {
@@ -50,7 +58,7 @@ const TopBar = (props:any) => {
             </Hidden>
             <h5>hello</h5>
             <div className={classes.flexGrow} />
-            <Hidden xsDown> {/* md以下の時に隠す */}
+            <div>
               <IconButton color="inherit" aria-describedby={id} onClick={handleClick}>
                 <Badge
                     badgeContent={ 4 }
@@ -81,17 +89,20 @@ const TopBar = (props:any) => {
               >
                 <InputIcon />
               </IconButton>
-            </Hidden>
+            </div>
           </Toolbar>
         </AppBar>
     )
 }
 
 const Sidebar = (props:any) => {
+    const classes = useStyles();
     return (
         <Drawer
             open={props.open}
+            classes={{ paper: classes.drawer }}
             onClose={props.onClose}
+            variant={props.variant}
         >
           <List>
             <ListItem>
@@ -109,14 +120,23 @@ const Sidebar = (props:any) => {
 }
 
 const Dashboard = () => {
+  const theme = useTheme() as Theme;
+    const is_desktop = useMediaQuery(theme.breakpoints.up('lg'), {
+        defaultMatches: true
+    });
+
     const [sidebar_open, set_sidebar_open] = React.useState(false)
     const toggle_sidebar = () => {
         set_sidebar_open(!sidebar_open)
     }
+
+    const should_open_sidebar = is_desktop ? true : sidebar_open
+
     return (
         <div>
           <TopBar onMenuClick={ toggle_sidebar } />
-          <Sidebar open={sidebar_open} onClose={ toggle_sidebar }/>
+          <Sidebar open={should_open_sidebar} onClose={ toggle_sidebar }
+                   variant={is_desktop ? 'persistent' : 'temporary'} />
         </div>
     )
 }
