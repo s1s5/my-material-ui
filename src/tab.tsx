@@ -17,6 +17,7 @@ import {
     FormControl, FormLabel, RadioGroup, Radio,
     InputLabel, Select, MenuItem,
     Switch,
+    TextareaAutosize,
 } from '@material-ui/core'
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -25,6 +26,10 @@ import {
     KeyboardTimePicker,
 //    KeyboardDatePicker,
 } from '@material-ui/pickers';
+
+import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
+
+import {DropzoneArea} from 'material-ui-dropzone'
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -57,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const TabTest = () => {
     const classes = useStyles()
-    const [value, setValue] = React.useState(1)
+    const [value, setValue] = React.useState(2)
     const [radio_value, set_radio_value] = React.useState("female")
     const [select_value, set_select_value] = React.useState("10")
     const [switch_checked, set_switch_checked] = React.useState(false)
@@ -187,10 +192,40 @@ const TabTest = () => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => { set_switch_checked(event.target.checked) }}
             name="checkedA"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
-                />
+        />
+
+        <Divider/>
+
+        <form noValidate autoComplete="off">
+          <TextField id="standard-basic" label="Standard" />
+          <TextField id="filled-basic" label="Filled" variant="filled" />
+          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        </form>
+
+        <TextareaAutosize aria-label="empty textarea" placeholder="Empty" />
+
+
       </Panel>
       <Panel value={value} index={2}>
-        panel 2
+        <Box>
+          <label htmlFor="image-input-2">
+          <Button component="span" variant="outlined" color="primary">
+            upload file
+            <Box ml={2} style={{display: "flex"}}>
+              <CloudUploadOutlinedIcon style={{flex: "0 1 auto", margin: "auto",}}/>
+            </Box>
+          </Button>
+          </label>
+          <input type="file" id="image-input-2" name="images" accept="image/*" aria-hidden="true"
+                 style={ {visibility: "hidden", width: "0px", height: "0px"} } />
+        </Box>
+
+        <Divider/>
+
+        <DropzoneArea
+            onChange={ () => {} }
+        />
+
       </Panel>
     </Paper>
     )
