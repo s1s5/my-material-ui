@@ -1,13 +1,25 @@
 import * as React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Card, CardContent, CardActions, CardActionArea, CardMedia, Button, Grid, GridList, GridListTile, Avatar, Typography, Paper, List, ListItem, ListItemAvatar, ListItemText, Divider } from '@material-ui/core';
+import { Container, Card, CardContent, CardActions, CardActionArea, CardMedia, Button, Grid, GridList, GridListTile, Avatar, Typography, Paper, List, ListItem, ListItemAvatar, ListItemText, Divider, Theme, Box } from '@material-ui/core';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
+import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
-const useStyles = makeStyles({
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import SaveIcon from '@material-ui/icons/Save';
+import PrintIcon from '@material-ui/icons/Print';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
+
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
 //        maxWidth: 345,
     },
@@ -25,10 +37,31 @@ const useStyles = makeStyles({
         margin: "auto",
         // backgroundColor: "rgba(255, 255, 255, 0.6)",
     },
-})
+    speedDial: {
+        position: 'absolute',
+        '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+            bottom: theme.spacing(2),
+            right: theme.spacing(2),
+        },
+        '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+            top: theme.spacing(2),
+            left: theme.spacing(2),
+        },
+    },
+}))
 
 const CardList = () => {
     const classes = useStyles()
+
+    const actions = [
+        { icon: <FileCopyIcon />, name: 'Copy' },
+        { icon: <SaveIcon />, name: 'Save' },
+        { icon: <PrintIcon />, name: 'Print' },
+        { icon: <ShareIcon />, name: 'Share' },
+        { icon: <FavoriteIcon />, name: 'Like' },
+    ];
+
+    const [open, set_open] = React.useState(false);
 
     return (
         <Container>
@@ -58,7 +91,11 @@ const CardList = () => {
             </Grid>
             <Grid item xs={12}>
               <Card>
+
                 <CardActionArea>
+                  <Box m={1} style={{float: "right" }}>
+                    <FavoriteBorderIcon style={ {color: "white"} }/>
+                  </Box>
                   <CardMedia
                       className={classes.media}
                       image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
@@ -118,6 +155,25 @@ const CardList = () => {
             </Grid>
             
           </Grid>
+          
+          <SpeedDial
+              ariaLabel="SpeedDial example"
+              className={classes.speedDial}
+              icon={<SpeedDialIcon />}
+              onClose={ () => { set_open(false) } }
+              onOpen={ () => { set_open(true) } }
+              open={open}
+              direction={ 'up' }
+          >
+            {actions.map(action => (
+                <SpeedDialAction
+                    key={action.name}
+                    icon={action.icon}
+                    tooltipTitle={action.name}
+                    onClick={ () => { set_open(false) } }
+                />
+            ))}
+          </SpeedDial>
         </Container>
     )
 }
