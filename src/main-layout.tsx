@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         paddingLeft: 240
     },
     content: {
-        height: 'calc(100% - ' + theme.spacing(1) + ')',
+        display: 'flex',
+        height: 'calc(100% - ' + theme.spacing(1) + 'px)',
         paddingTop: theme.spacing(1),
     }
 }))
@@ -71,6 +72,11 @@ const MainLayout = (props: Props) => {
         {
             title: 'カレンダー',
             href: '/calendar/',
+            icon: <DashboardIcon />,
+        },
+        {
+            title: 'チャット',
+            href: '/chat/',
             icon: <DashboardIcon />,
         },
     ]

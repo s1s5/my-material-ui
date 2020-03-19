@@ -7,11 +7,11 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 
 
-type DateIOType = Date | null;
+type DateIOType = Date | null  // TODO
 
 import jaLocale from "date-fns/locale/ja";
 
-if (jaLocale.options) {
+if (jaLocale.options) {  // TODO
     jaLocale.options.weekStartsOn = 0
 }
 
