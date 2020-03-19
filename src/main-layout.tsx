@@ -68,6 +68,11 @@ const MainLayout = (props: Props) => {
             href: '/dialog/',
             icon: <DashboardIcon />,
         },
+        {
+            title: 'カレンダー',
+            href: '/calendar/',
+            icon: <DashboardIcon />,
+        },
     ]
     const classes = useStyles();
 
