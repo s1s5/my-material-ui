@@ -19,4 +19,5 @@ module.exports = merge(common, {
             template: path.join(__dirname, 'dev-index.html'),
         }),
     ],
+    devtool: 'inline-source-map',
 })
