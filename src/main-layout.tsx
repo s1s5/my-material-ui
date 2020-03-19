@@ -58,6 +58,11 @@ const MainLayout = (props: Props) => {
             href: '/tab/',
             icon: <DashboardIcon />,
         },
+        {
+            title: 'ステッパー',
+            href: '/stepper/',
+            icon: <DashboardIcon />,
+        },
     ]
     const classes = useStyles();
 
