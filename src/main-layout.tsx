@@ -63,6 +63,11 @@ const MainLayout = (props: Props) => {
             href: '/stepper/',
             icon: <DashboardIcon />,
         },
+        {
+            title: 'ダイアログ',
+            href: '/dialog/',
+            icon: <DashboardIcon />,
+        },
     ]
     const classes = useStyles();
 

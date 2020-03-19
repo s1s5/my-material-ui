@@ -13,6 +13,7 @@ import MainLayout from './main-layout'
 import CardList from './card-list'
 import Tab from './tab'
 import MyStepper from './stepper'
+import MyDialog from './dialog'
 
 const Hoge = () => {
     return (
@@ -93,6 +94,7 @@ const App = () => {
                 <Route path="/cardlist" exact component={ CardList }/>
                 <Route path="/tab" exact component={ Tab }/>
                 <Route path="/stepper" exact component={ MyStepper }/>
+                <Route path="/dialog" exact component={ MyDialog }/>
               </Switch>
             </MainLayout>
           </Router>
