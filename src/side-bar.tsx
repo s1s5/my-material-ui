@@ -87,9 +87,11 @@ const SideBar = (props: Props) => {
     return (
         <Drawer
             anchor="left"
+            transitionDuration={ 0.5 }
             open={ props.open }
             classes={{ paper: classes.drawer }}
             onClose={ props.onClose }
+            onClick={ props.onClose }
             variant={ props.variant }
         >
           <div className={ classes.root }>

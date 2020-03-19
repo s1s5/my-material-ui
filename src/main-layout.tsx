@@ -49,10 +49,15 @@ const MainLayout = (props: Props) => {
 
     const pages = [
         {
-            title: 'Dashboard',
-            href: '/dashboard',
+            title: 'カードリスト',
+            href: '/cardlist/',
             icon: <DashboardIcon />,
-        }
+        },
+        {
+            title: 'タブ',
+            href: '/tab/',
+            icon: <DashboardIcon />,
+        },
     ]
     const classes = useStyles();
 
@@ -63,7 +68,7 @@ const MainLayout = (props: Props) => {
                 })}
             >
       <TopBar onMenuClick={ toggle_sidebar }/>
-      <SideBar open={should_open_sidebar} onClose={ toggle_sidebar }
+      <SideBar open={ should_open_sidebar } onClose={ toggle_sidebar }
                variant={is_desktop ? 'persistent' : 'temporary'}
                pages={ pages }
       />

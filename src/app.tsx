@@ -11,6 +11,7 @@ import theme from './theme'
 
 import MainLayout from './main-layout'
 import CardList from './card-list'
+import Tab from './tab'
 
 const Hoge = () => {
     return (
@@ -88,7 +89,8 @@ const App = () => {
             <MainLayout>
               <Switch>
                 <Route path="/dashboard" exact component={ Hoge }/>
-                <Route path="/" exact component={ CardList }/>
+                <Route path="/cardlist" exact component={ CardList }/>
+                <Route path="/tab" exact component={ Tab }/>
               </Switch>
             </MainLayout>
           </Router>
