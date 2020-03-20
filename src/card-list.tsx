@@ -1,10 +1,12 @@
 import * as React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Card, CardContent, CardActions, CardActionArea, CardMedia, Button, Grid, GridList, GridListTile, Avatar, Typography, Paper, List, ListItem, ListItemAvatar, ListItemText, Divider, Theme, Box } from '@material-ui/core';
+import { Container, Card, CardContent, CardActions, CardActionArea, CardMedia, CardHeader, Button, Grid, GridList, GridListTile, Avatar, Typography, Paper, List, ListItem, ListItemAvatar, ListItemText, Divider, Theme, Box, IconButton } from '@material-ui/core';
 import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
@@ -18,10 +20,15 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
+import { red } from '@material-ui/core/colors'
+
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
 //        maxWidth: 345,
+    },
+    cardHeaderAvataar: {
+        backgroundColor: red[500],
     },
     media: {
         height: 140,
@@ -68,6 +75,20 @@ const CardList = () => {
           <Grid container spacing={ 1 }>
             <Grid item xs={12}>
               <Card elevation={3}>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="recipe" className={ classes.cardHeaderAvataar }>
+                          R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                          <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="hello card"
+                    subheader="September 14, 2016"
+                />
                 <CardContent>
                   <Grid container wrap="nowrap" spacing={2}>
                     <Grid item style={{display: "flex"}}>
