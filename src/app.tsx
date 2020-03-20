@@ -16,6 +16,7 @@ import MyStepper from './stepper'
 import MyDialog from './dialog'
 import MyCalendar from './cal'
 import MyChat from './chat'
+import MyChart from './chart'
 
 const Hoge = () => {
     return (
@@ -99,6 +100,7 @@ const App = () => {
                 <Route path="/dialog" exact component={ MyDialog }/>
                 <Route path="/calendar" exact component={ MyCalendar }/>
                 <Route path="/chat" exact component={ MyChat }/>
+                <Route path="/chart" exact component={ MyChart }/>
               </Switch>
             </MainLayout>
           </Router>

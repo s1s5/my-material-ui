@@ -79,6 +79,11 @@ const MainLayout = (props: Props) => {
             href: '/chat/',
             icon: <DashboardIcon />,
         },
+        {
+            title: 'チャート',
+            href: '/chart/',
+            icon: <DashboardIcon />,
+        },
     ]
     const classes = useStyles();
 
