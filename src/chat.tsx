@@ -29,16 +29,16 @@ const useStyles = makeStyles((theme: Theme) => ({
         flexGrow: 1,
         // maxHeight: "100%",
     },
-    messageCard: {
-        borderRadius: `${theme.spacing(1)}px`,
-    },
-    messageCardContent: {
-        color: '#444',
-        padding: `${theme.spacing(1)}px`,
-        '&:last-child': {
-            paddingBottom: `${theme.spacing(1)}px`,
-        },
-    },
+//    messageCard: {
+//        borderRadius: `${theme.spacing(1)}px`,
+//    },
+//    messageCardContent: {
+//        color: '#444',
+//        padding: `${theme.spacing(1)}px`,
+//        '&:last-child': {
+//            paddingBottom: `${theme.spacing(1)}px`,
+//        },
+//    },
     chatInput: {
 //        height: "80px",
         display: "flex",
