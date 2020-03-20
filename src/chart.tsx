@@ -16,10 +16,10 @@ import {
 
 import {
     ResponsiveContainer,
-    LineChart,
-    Line,
+    LineChart, Line,
     CartesianGrid,
     XAxis, YAxis,
+    PieChart, Pie, Cell, PieLabelRenderProps
 } from 'recharts';
 
 const data = [
@@ -41,14 +41,68 @@ const LineChartExample = () => (
     </ResponsiveContainer>
 )
 
+const PieChartExample = () => (
+    <ResponsiveContainer width="100%" aspect={ 4 / 4.0} >
+      <PieChart>
+        <Pie data={data} dataKey="amt" fill="#8884d8"/>
+      </PieChart>
+    </ResponsiveContainer>
+)
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF80FF'];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = (props: PieLabelRenderProps) => {
+    const radius = (props.innerRadius! as number) + ((props.outerRadius! as number) - (props.innerRadius! as number)) * 0.5;
+    const x = (props.cx! as number) + radius * Math.cos(-props.midAngle! * RADIAN);
+    const y = (props.cy! as number) + radius * Math.sin(-props.midAngle! * RADIAN);
+
+    return (
+        <text x={x} y={y} fill="white" textAnchor={x > (props.cx ? props.cx : 0) ? 'start' : 'end'} dominantBaseline="central">
+          {`${((props.percent ? props.percent : 0) * 100).toFixed(0)}%`}
+        </text>
+    );
+};
+
+const PieChartExample2 = () => (
+    <ResponsiveContainer width="100%" aspect={ 4 / 4.0} >
+      <PieChart>
+        <Pie
+            data={data}
+            labelLine={false}
+            label={renderCustomizedLabel}
+            fill="#8884d8"
+            dataKey="amt"
+        >
+          {
+              data.map((entry, index) => <Cell key={ index } fill={COLORS[index % COLORS.length]}/>)
+          }
+        </Pie>
+      </PieChart>
+    </ResponsiveContainer>
+)
+
 const MyChart = () => {
     return (
         <Container>
           <Grid container spacing={ 1 }>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
               <Card>
                   <CardContent>
                     <LineChartExample/>
+                  </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Card>
+                  <CardContent>
+                    <PieChartExample />
+                  </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Card>
+                  <CardContent>
+                    <PieChartExample2 />
                   </CardContent>
                 </Card>
             </Grid>
