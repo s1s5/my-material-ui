@@ -15,6 +15,41 @@ if (jaLocale.options) {  // TODO
     jaLocale.options.weekStartsOn = 0
 }
 
+import { makeStyles } from '@material-ui/styles'
+import {
+    Container, Card, CardContent,
+    Theme, Divider,
+    Table, TableBody, TableRow, TableCell, TableContainer
+} from '@material-ui/core'
+
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+
+
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+    },
+    calendar: {
+    },
+    calendarContent: {
+        '&:last-child': {
+            paddingBottom: 8,
+        },
+    },
+    eventList: {
+        flex: 1,
+        overflow: "auto",
+    },
+    dateHeader: {
+        // borderLeft: "4px solid #f0f0f0",
+        borderBottom: "1px solid #f0f0f0",
+    },
+}))
+
+
+
 // import 'rc-calendar/assets/index.css'
 // import Calendar from 'rc-calendar'
 // 
@@ -32,16 +67,16 @@ if (jaLocale.options) {  // TODO
 //                   displayFormat='YYYY-MM-DD'
 //                   transitionDuration={0}
 //               />
-import { Container, Card, CardContent } from '@material-ui/core'
 
 const Cal = () => {
     // const [focused, set_focused] = React.useState<boolean | null>(false)
     // const [date, set_date] = React.useState<moment.Moment | null>(null)
+    const classes = useStyles()
     const [date, set_date] = React.useState(new Date())
     return (
-        <Container>
-          <Card>
-            <CardContent>
+        <Container className={ classes.root }>
+          <Card className={ classes.calendar }>
+            <CardContent className={ classes.calendarContent }>
               <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ jaLocale }>
                 <Calendar
                     date={ date }
@@ -56,6 +91,48 @@ const Cal = () => {
                     }
                 />
               </MuiPickersUtilsProvider>
+            </CardContent>
+          </Card>
+          <Divider/>
+          <Card className={ classes.eventList }>
+            <CardContent>
+              <TableContainer>
+                <Table size="small">
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className={ classes.dateHeader } component="th" colSpan={ 3 }>
+                        2020/03/20
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
+                        hover
+                        onClick={ () => { console.log("clicked!") } }>
+                      <TableCell component="th">
+                        10:00
+                      </TableCell>
+                      <TableCell>
+                        some schedule
+                      </TableCell>
+                      <TableCell>
+                        <KeyboardArrowRightIcon/>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
+                        hover
+                        onClick={ () => { console.log("clicked!") } }>
+                      <TableCell component="th">
+                        12:00
+                      </TableCell>
+                      <TableCell>
+                        some schedule
+                      </TableCell>
+                      <TableCell>
+                        <KeyboardArrowRightIcon/>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </CardContent>
           </Card>
         </Container>
