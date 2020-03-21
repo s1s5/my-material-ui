@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     content: {
         display: 'flex',
-        height: 'calc(100% - ' + theme.spacing(1) + 'px)',
-        paddingTop: theme.spacing(1),
+        height: 'calc(100% - ' + theme.spacing(0) + 'px)',
+        paddingTop: theme.spacing(0),
     }
 }))
 

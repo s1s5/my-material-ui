@@ -12,7 +12,9 @@ import Notifications from './notifications'
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        boxShadow: 'none'
+        boxShadow: 'none',
+//        color: '#444',
+        //        backgroundColor: 'white',
     },
     titleLink: {
         textDecoration: "none",
@@ -20,9 +22,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     title: {
         color: theme.palette.primary.contrastText,
+//        color: '#444',
     },
     signOutButton: {
         marginLeft: theme.spacing(1)
+    },
+    menuSpace: {
+        marginLeft: theme.spacing(2),
     }
 }))
 
@@ -36,8 +42,8 @@ const TopBar = (props: Props) => {
     const classes = useStyles()
     /* className={clsx(classes.root, className)}    */
     return (
-        <AppBar>
-          <Toolbar>
+        <AppBar className={ classes.root }>
+          <Toolbar disableGutters>
             <Hidden lgUp>
               <IconButton
                   color="inherit"
@@ -45,6 +51,10 @@ const TopBar = (props: Props) => {
               >
                 <MenuIcon />
               </IconButton>
+            </Hidden>
+            
+            <Hidden mdDown>
+              <div className={ classes.menuSpace }></div>
             </Hidden>
             
             <RouterLink to="/" className={classes.titleLink}>

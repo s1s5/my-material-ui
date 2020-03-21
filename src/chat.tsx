@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 //        height: "80px",
         display: "flex",
         backgroundColor: "white",
-        padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`
+        padding: `${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(2)}px`
     },
     chatTextFieldBox: {
         marginLeft: `${theme.spacing(0)}px`,

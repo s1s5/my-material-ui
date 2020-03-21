@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         marginBottom: theme.spacing(2)
     },
     list: {
+        marginBottom: theme.spacing(2)
     },
     listItem: {
         display: 'flex',
@@ -84,10 +85,10 @@ const CustomRouterLink = React.forwardRef((props: any, ref: React.Ref<HTMLDivEle
 
 const SideBar = (props: Props) => {
     const classes = useStyles();
+    // transitionDuration={ 0.5 }
     return (
         <Drawer
             anchor="left"
-            transitionDuration={ 0.5 }
             open={ props.open }
             classes={{ paper: classes.drawer }}
             onClose={ props.onClose }
