@@ -6,12 +6,15 @@ import {
     Card, CardContent,
     TextField, Button,
     TextareaAutosize,
+    CircularProgress,
 } from '@material-ui/core'
 import {
     makeStyles, Theme,
 } from '@material-ui/core/styles'
 
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@material-ui/icons/Send'
+
+import VisibilitySensor from 'react-visibility-sensor'
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -92,15 +95,39 @@ const useStyles = makeStyles((theme: Theme) => ({
             paddingBottom: `${theme.spacing(1)}px`,
         },
     },
+    loading: {
+        display: 'flex',
+        padding: `${theme.spacing(2)}px`,
+    },
+    loadingProgress: {
+        flex: "0 1 auto",
+        margin: "auto",
+        color: "#888",
+    },
 }))
 
 const Chat = () => {
     const classes = useStyles()
+    const [input_div, set_input_div] = React.useState<HTMLDivElement | null>(null)
+    React.useEffect(() => {
+        if (input_div === null) {
+            return
+        }
+        input_div.scrollIntoView()
+    }, [input_div]);
 
     return (
         <Container className={ classes.root } maxWidth="sm">
           <Box padding={1} className={ classes.chatHistory }>
             <Grid container spacing={ 1 }>
+              <Grid item xs={12}>
+                <VisibilitySensor onChange={ (is_visible) => {console.log("is_visible=", is_visible)} }>
+                  <div className={ classes.loading }>
+                    <CircularProgress size={ 20 } color="inherit" className={ classes.loadingProgress }/>
+                  </div>
+                </VisibilitySensor>
+              </Grid>
+
               <Grid item xs={12} className={ classes.oppMessageBox }>
                 <Avatar className={ classes.oppMessageAvator }>You</Avatar>
                 <Card className={ classes.oppMessageCard }>
@@ -110,7 +137,6 @@ const Chat = () => {
                 </Card>
                 <div style={{flexGrow: 1}}></div>
               </Grid>
-
 
               <Grid item xs={12} className={ classes.oppMessageBox }>
                 <div style={{flexGrow: 1}}></div>
@@ -122,9 +148,54 @@ const Chat = () => {
                 <Avatar className={ classes.oppMessageAvator }>Me</Avatar>
               </Grid>
 
+              <Grid item xs={12} className={ classes.oppMessageBox }>
+                <Avatar className={ classes.oppMessageAvator }>You</Avatar>
+                <Card className={ classes.oppMessageCard }>
+                  <CardContent className={ classes.oppMessageCardContent }>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                    message<br/>
+                  </CardContent>
+                </Card>
+                <div style={{flexGrow: 1}}></div>
+              </Grid>
+
             </Grid>
           </Box>
           <Box className={ classes.chatInput }>
+            <div style={{ float:"left", clear: "both" }}
+                 ref={(el) => { set_input_div(el) }}></div>
             {/* <Avatar>X</Avatar> */}
             <Box boxShadow={0} borderRadius={10} className={ classes.chatTextFieldBox }>
               {/* <input type="text" className={ classes.chatTextField }/> */}
