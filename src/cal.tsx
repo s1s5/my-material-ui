@@ -22,7 +22,7 @@ import {
     Table, TableBody, TableRow, TableCell, TableContainer
 } from '@material-ui/core'
 
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -45,6 +45,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     dateHeader: {
         // borderLeft: "4px solid #f0f0f0",
         borderBottom: "1px solid #f0f0f0",
+    },
+    displayFlex: {
+        display:"flex",
+    },
+    center: {
+        flex: "0 1 auto",
+        margin: "auto",
     },
 }))
 
@@ -113,8 +120,8 @@ const Cal = () => {
                       <TableCell>
                         some schedule
                       </TableCell>
-                      <TableCell>
-                        <KeyboardArrowRightIcon/>
+                      <TableCell className={ classes.displayFlex }>
+                        <NavigateNextIcon className={ classes.center }/>
                       </TableCell>
                     </TableRow>
                     <TableRow
@@ -126,8 +133,8 @@ const Cal = () => {
                       <TableCell>
                         some schedule
                       </TableCell>
-                      <TableCell>
-                        <KeyboardArrowRightIcon/>
+                      <TableCell className={ classes.displayFlex }>
+                        <NavigateNextIcon className={ classes.center }/>
                       </TableCell>
                     </TableRow>
                   </TableBody>
