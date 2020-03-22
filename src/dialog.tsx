@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         position: "fixed",
         zIndex: theme.zIndex.drawer + 1,
         right: "0px",
-        bottom: "0px",
+//        bottom: "0px",
         top: "0px",
         left: "0px",
         width: "100%",
